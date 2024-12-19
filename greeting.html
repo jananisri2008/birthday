@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Birthday Greeting Card</title>
+    <style>
+        body {
+        background-image: url('./song/img1.jpg'); /* Your background image */
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        }
+
+        .card {
+            width: 300px;
+            height: 400px;
+            perspective: 1500px; /* Adds 3D effect */
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+        }
+
+        .card.open .card-inner {
+            transform: rotateY(180deg); /* Flip the card when opened */
+        }
+
+        .card-front{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Hide the back side of the card when flipped */
+            border-radius: 15px;
+        }
+
+        .card-back {
+            position: absolute;
+            width: auto;
+            height: auto;
+            backface-visibility: hidden; /* Hide the back side of the card when flipped */
+            border-radius: 15px;
+        }
+
+        .card-front {
+            background: linear-gradient(145deg, #ff8e00, #ff4400);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-back {
+            background: #f8d7da;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            color: #333;
+            font-size: 1.2rem;
+            text-align: left;
+            transform: rotateY(180deg); /* Start the back face rotated */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 50px;
+            padding-top: 30px;
+        }
+
+        .card:hover {
+            cursor: pointer;
+        }
+
+        /* Style for the image to make it circular */
+        .card-front img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; /* Makes the image round */
+            object-fit: cover; /* Ensures the image covers the circle without distortion */
+            margin-bottom: 20px; /* Space between the image and text */
+        }
+
+        /* Extra decorations */
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            animation: confettiFall 3s infinite;
+        }
+
+        .confetti div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff4081;
+            animation: confetti 1s infinite;
+            opacity: 0;
+        }
+
+        @keyframes confetti {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Letter Style */
+        .letter {
+            max-width: 200%;
+            max-height: 500%;
+        }
+
+        .letter p {
+            margin-bottom: 15px;
+            padding-left: 15px;
+        }
+
+        .letter strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" onclick="flipCard()">
+        <div class="card-inner">
+            <!-- Front of the card -->
+            <div class="card-front">
+                <img src="./song/image.jpg" alt="Birthday Card"> 
+                Wishing you a day filled with love, laughter, and happiness!
+            </div>
+            <!-- Back of the card -->
+            <div class="card-back">
+                <div class="letter">
+                    <p>
+                        <strong>Dear Lavanaya Seetharaman,</strong><br>
+                        On behalf of the entire team, I would like to take a moment to wish you a very happy birthday! Your leadership, vision, and dedication continue to inspire and drive our success. We are truly fortunate to have such a remarkable CEO guiding us forward.<br><br>
+                        May this special day bring you the same level of joy, success, and fulfillment that you bring to all of us. We look forward to another year of working together and achieving great things under your leadership.<br><br>
+                        Wishing you health, happiness, and many more years of success ahead!<br><br>
+                        <strong>Warmest regards,</strong><br>
+                        Janani Sri<br>
+                        Front End Developer Intern<br>
+                        Black Wins Technology
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="confetti">
+        <!-- Confetti Effect -->
+        <div style="top: 10%; left: 20%; animation-delay: 0.2s;"></div>
+        <div style="top: 30%; left: 50%; animation-delay: 0.5s;"></div>
+        <div style="top: 50%; left: 80%; animation-delay: 0.8s;"></div>
+        <div style="top: 70%; left: 10%; animation-delay: 1s;"></div>
+        <div style="top: 90%; left: 60%; animation-delay: 1.2s;"></div>
+    </div>
+
+    <script>
+        // Function to flip the card on click
+        function flipCard() {
+            const card = document.querySelector('.card');
+            card.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>
